@@ -1,7 +1,7 @@
 # dsh-web-search-opencode-style
 
 [![npm version](https://img.shields.io/npm/v/dsh-web-search-opencode-style)](https://www.npmjs.com/package/dsh-web-search-opencode-style)
-[![license](https://img.shields.io/npm/l/dsh-web-search-opencode-style)](./package.json)
+[![license](https://img.shields.io/npm/l/dsh-web-search-opencode-style)](./LICENSE)
 
 An opencode-style web search provider for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 (DSH). It registers a single `opencode-style` provider into `ctx.web`, so the

@@ -2,6 +2,7 @@
   "name": "dsh-web-search-opencode-style",
   "version": "0.1.1",
   "description": "Opencode-style web search for DeepSeek Harness: direct Exa / Parallel MCP calls, no API key required. Registers one ctx.web search provider.",
+  "author": "Quang Nguyen",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
