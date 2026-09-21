@@ -1,0 +1,24 @@
+# dsh-web-search-opencode-style bundle patch.
+# 1) Mount provider dưới tên package (resolve qua node_modules của profile).
+# 2) Đè row `web` để searchProvider mặc định là opencode-style — cài vào là
+#    chạy luôn, không dính WEB_PROVIDER_AMBIGUOUS với deepseek-official có sẵn.
+#    User vẫn override được qua env DSH_WEB_SEARCH_PROVIDER / DSH_WEB_FETCH_PROVIDER.
+- insert:
+    - id: web-search-opencode-style
+      name: dsh-web-search-opencode-style
+      config:
+        # provider: "exa" | "parallel" | undefined (auto 50/50 theo session như opencode).
+        # Env override được plugin đọc trực tiếp, đúng thứ tự opencode:
+        #   OPENCODE_WEBSEARCH_PROVIDER > provider > OPENCODE_ENABLE_EXA /
+        #   OPENCODE_ENABLE_PARALLEL / OPENCODE_EXPERIMENTAL* > checksum(sessionID).
+        provider: !!js process.env.OPENCODE_WEBSEARCH_PROVIDER ?? undefined
+        exaApiKey: !!js process.env.EXA_API_KEY ?? undefined
+        parallelApiKey: !!js process.env.PARALLEL_API_KEY ?? undefined
+        timeoutMs: 25000
+        numResults: 8
+
+# Patch thay cả object `config` của row đích, nên phải restate đủ key row `web` owns.
+- id: web
+  config:
+    searchProvider: !!js process.env.DSH_WEB_SEARCH_PROVIDER ?? 'opencode-style'
+    fetchProvider: !!js process.env.DSH_WEB_FETCH_PROVIDER ?? 'http'
